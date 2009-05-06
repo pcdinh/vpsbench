@@ -24,7 +24,7 @@ if __name__ == "__main__":
         os.system("svn co %s %s" % (u, d_dir))
 
     m_dir = "mysql-5.1.34"
-    if not os.path.isdir(pg_dir):
+    if not os.path.isdir(m_dir):
         u = "http://mysql.he.net/Downloads/MySQL-5.1/mysql-5.1.34.tar.gz"
         cmd = "wget %s && tar xzf %s.tar.gz && cd %s && ./configure && " + \
               "make"
