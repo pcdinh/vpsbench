@@ -7,6 +7,8 @@ import subprocess
 from datetime import datetime as dt
 from socket import gethostname
 
+HOST = gethostname()
+
 def run(command):
     proc = subprocess.Popen(command,
                             shell=True,
@@ -17,10 +19,11 @@ def run(command):
 def write_log(fname, data, number):
     if not os.path.isdir("logs"):
         os.mkdir("logs")
-    path = "logs/%s%s.log" % (gethostname(), fname)
+    path = "logs/%s-%s.log" % (HOST, fname)
     with open(path, 'a') as f:
         f.write("\n\nRun: %s\nDate: %s\n\n" % (number, dt.now()))
         f.write(data)
+    os.system("git add %s" % path)
 
 
 if __name__ == "__main__":
@@ -41,6 +44,9 @@ if __name__ == "__main__":
         write_log('django_test', run(d_cmd), i)
         time.sleep(60*5)
         write_log('pgsql_mysql_benchmark', run(p_cmd), i)
+
+        os.system('git commit -m "Data for run %s (%s)"' % (i, HOST)
+        os.system('git push')
 
         while now.hour == dt.now().hour:
             time.sleep(60)
