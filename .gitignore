@@ -1,6 +1,5 @@
 *.pyc
 *.swp
-*.log
 *.tar.gz
 mysql-*/
 django/*
