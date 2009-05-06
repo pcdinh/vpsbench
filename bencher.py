@@ -45,6 +45,7 @@ if __name__ == "__main__":
         time.sleep(60*5)
         write_log('pgsql_mysql_benchmark', run(p_cmd), i)
 
+        os.system('git pull')
         os.system('git commit -m "Data for run %s (%s)"' % (i, HOST))
         os.system('git push')
 
