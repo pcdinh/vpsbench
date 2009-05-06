@@ -4,6 +4,7 @@ import time
 import subprocess
 
 from datetime import datetime as dt
+from socket import gethostname
 
 def run(command):
     proc = subprocess.Popen(command,
@@ -13,6 +14,9 @@ def run(command):
     return "\n".join(proc.communicate())
 
 def write_log(fname, data, number):
+    if not os.path.isdir("logs"):
+        os.mkdir("logs")
+    path = "logs/%s%s.log" % (gethostname(), fname)
     with open(fname, 'a') as f:
         f.write("\n\nRun: %s\nDate: %s\n\n" % (number, dt.now()))
         f.write(data)
@@ -33,9 +37,9 @@ if __name__ == "__main__":
     for i in range(1, 10000):
         print "Running %s" % i
 
-        write_log('django_test.log', run(d_cmd), i)
+        write_log('django_test', run(d_cmd), i)
         time.sleep(60*5)
-        write_log('pgsql_mysql_benchmark.log', run(p_cmd), i)
+        write_log('pgsql_mysql_benchmark', run(p_cmd), i)
 
         while now.hour == dt.now().hour:
             time.sleep(60)
