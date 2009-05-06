@@ -21,22 +21,20 @@ def write_log(fname, data, number):
 if __name__ == "__main__":
     test_dir = './django/tests'
     python_path = "export PYTHONPATH=django:."
-    d_cmd = "%s && time %s/runtests.py --settings=sqlite3conf model_forms" % (python_path,
+    d_cmd = "%s && time %s/runtests.py --settings=sqlite3conf" % (python_path,
                                                                   test_dir)
-    u_cmd = "cd unixbench-5.1.2 && time ./Run"
-
-    p_cmd = "cd postgresql-8.3.7 && time make check"
+    usr = "testuser"
+    pwd = "n0ns3curepWd"
+    tests = "./run-all-tests --server=Pg --user=%s --password=%s" % (usr, pwd)
+    p_cmd = "cd mysql-5.1.34/sql-bench && %s" % tests
 
     now = dt.now()
     for i in range(1, 10000):
         print "Running %s" % i
-        write_log('django_test.log', run(d_cmd), i)
 
-        #time.sleep(60*5)
-        #write_log('unixbench.log', run(u_cmd), i)
-        #time.sleep(60*5)
-        write_log('postgresql_regression.log', run(p_cmd), i)
-        
+        write_log('django_test.log', run(d_cmd), i)
+        time.sleep(60*5)
+        write_log('pgsql_mysql_benchmark.log', run(p_cmd), i)
 
         while now.hour == dt.now().hour:
             time.sleep(60)
