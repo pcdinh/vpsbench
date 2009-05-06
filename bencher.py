@@ -18,7 +18,7 @@ def write_log(fname, data, number):
     if not os.path.isdir("logs"):
         os.mkdir("logs")
     path = "logs/%s%s.log" % (gethostname(), fname)
-    with open(fname, 'a') as f:
+    with open(path, 'a') as f:
         f.write("\n\nRun: %s\nDate: %s\n\n" % (number, dt.now()))
         f.write(data)
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
                                                                   test_dir)
     usr = "testuser"
     pwd = "n0ns3curepWd"
-    tests = "./run-all-tests --silent --small-test " + \
+    tests = "time ./run-all-tests --silent --small-test " + \
             "--server=Pg --user=%s --password=%s" % (usr, pwd)
     p_cmd = "cd mysql-5.1.34/sql-bench && %s" % tests
 
