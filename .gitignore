@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+*.log
+*.tar.gz
+unixbench-*/
+postgresql-*/
+django/*
