@@ -55,7 +55,7 @@ if __name__ == "__main__":
         write_log('unix_benchmark', run(u_cmd), i)
 
         os.system('git pull')
-        os.system('git commit -m "Data for run %s (%s)"' % (i, HOST))
+        os.system('git commit -m "Logging run %s (%s)"' % (i, HOST))
         os.system('git push')
 
         while dt.now() - start < timedelta(hours=3):
