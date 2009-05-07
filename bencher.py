@@ -5,6 +5,7 @@ import time
 import subprocess
 
 from datetime import datetime as dt
+from datetime import timedelta
 from socket import gethostname
 
 HOST = gethostname()
@@ -37,7 +38,7 @@ if __name__ == "__main__":
             "--server=Pg --user=%s --password=%s" % (usr, pwd)
     p_cmd = "cd mysql-5.1.34/sql-bench && %s" % tests
 
-    now = dt.now()
+    start = dt.now()
     for i in range(1, 10000):
         print "Running %s" % i
 
@@ -49,6 +50,6 @@ if __name__ == "__main__":
         os.system('git commit -m "Data for run %s (%s)"' % (i, HOST))
         os.system('git push')
 
-        while now.hour == dt.now().hour:
-            time.sleep(60)
-        now = dt.now()
+        while dt.now() - start < timedelta(hours=3):
+            time.sleep(10)
+        start = dt.now()
