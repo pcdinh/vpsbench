@@ -1,0 +1,65 @@
+diff -urB unixbench-5.1.2/Makefile unixbench-5.1.2-mods/Makefile
+--- unixbench-5.1.2/Makefile	2007-12-22 20:51:21.000000000 +0100
++++ unixbench-5.1.2-mods/Makefile	2009-05-07 20:56:25.000000000 +0200
+@@ -43,7 +43,7 @@
+ # X11 libraries on your system.
+ #
+ # Comment the line out to disable these tests.
+-GRAPHIC_TESTS = defined
++#GRAPHIC_TESTS = defined
+ 
+ # Set "GL_LIBS" to the libraries needed to link a GL program.
+ GL_LIBS = -lGL -lXext -lX11
+diff -urB unixbench-5.1.2/pgms/index.base unixbench-5.1.2-mods/pgms/index.base
+--- unixbench-5.1.2/pgms/index.base	2007-10-15 23:31:00.000000000 +0200
++++ unixbench-5.1.2-mods/pgms/index.base	2009-05-07 20:56:50.000000000 +0200
+@@ -8,7 +8,7 @@
+ fsbuffer|20|KBps|1655|1655|1
+ fsdisk|20|KBps|5800|5800|1
+ pipe|10|lps|12440|12440|2
+-context1|10|lps|4000|4000|2
++#context1|10|lps|4000|4000|2
+ spawn|20|lps|126|126|1
+ shell8|60|lpm|6|6|1
+ syscall|10|lps|15000|15000|2
+diff -urB unixbench-5.1.2/Run unixbench-5.1.2-mods/Run
+--- unixbench-5.1.2/Run	2007-12-22 22:48:10.000000000 +0100
++++ unixbench-5.1.2-mods/Run	2009-05-07 20:56:35.000000000 +0200
+@@ -123,7 +123,8 @@
+ ];
+ 
+ my $oldsystem = [
+-    "execl", "fstime", "fsbuffer", "fsdisk", "pipe", "context1", "spawn",
++    #"execl", "fstime", "fsbuffer", "fsdisk", "pipe", "context1", "spawn",
++    "execl", "fstime", "fsbuffer", "fsdisk", "pipe", "spawn",
+     "syscall"
+ ];
+ 
+@@ -148,7 +149,7 @@
+     "whetstone-double"   => undef,
+     "syscall"       => undef,
+     "pipe"          => undef,
+-    "context1"      => undef,
++    #"context1"      => undef,
+     "spawn"         => undef,
+     "execl"         => undef,
+     "fstime-w"      => undef,
+@@ -249,12 +250,12 @@
+         "repeat" => 'long',
+         "options" => "10",
+     },
+-    "context1" => {
+-        "logmsg" => "Pipe-based Context Switching",
+-        "cat"    => 'system',
+-        "repeat" => 'long',
+-        "options" => "10",
+-    },
++    #"context1" => {
++    #    "logmsg" => "Pipe-based Context Switching",
++    #    "cat"    => 'system',
++    #    "repeat" => 'long',
++    #    "options" => "10",
++    #},
+     "pipe" => {
+         "logmsg" => "Pipe Throughput",
+         "cat"    => 'system',
