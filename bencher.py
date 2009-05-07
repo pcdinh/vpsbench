@@ -30,8 +30,10 @@ def write_log(fname, data, number):
 if __name__ == "__main__":
     test_dir = './django/tests'
     python_path = "export PYTHONPATH=django:."
-    d_cmd = "%s && time %s/runtests.py --settings=sqlite3conf" % (python_path,
-                                                                  test_dir)
+    d_cmd_template = "%s && time %s/runtests.py --settings=" % (python_path,
+                                                               test_dir)
+    d_cmd = lambda setting: "%s%s" % (d_cmd_template, setting)
+
     usr = "testuser"
     pwd = "n0ns3curepWd"
     tests = "time ./run-all-tests --silent " + \
@@ -44,7 +46,9 @@ if __name__ == "__main__":
     for i in range(1, 10000):
         print "Running %s" % i
 
-        write_log('django_test', run(d_cmd), i)
+        write_log('django_sqlite3_test', run(d_cmd("sqlite3conf")), i)
+        time.sleep(60*5)
+        write_log('django_pgsql_test', run(d_cmd("pgsqlconf")), i)
         time.sleep(60*5)
         write_log('pgsql_mysql_benchmark', run(p_cmd), i)
         time.sleep(60*5)
