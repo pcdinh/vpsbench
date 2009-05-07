@@ -2,4 +2,5 @@
 *.swp
 *.tar.gz
 mysql-*/
+unixbench-*/
 django/*

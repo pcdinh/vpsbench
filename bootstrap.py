@@ -29,3 +29,10 @@ if __name__ == "__main__":
         cmd = "wget %s && tar xzf %s.tar.gz && cd %s && ./configure && " + \
               "make"
         os.system(cmd % (u, m_dir, m_dir))
+
+    u_dir = "unixbench-5.1.2"
+    if not os.path.isdir(m_dir):
+        u = "http://www.hermit.org/Linux/Benchmarking/unixbench-5.1.2.tar.gz"
+        cmd = "wget %s && tar xzf %s.tar.gz && " + \
+              "patch -p0 -i %s.patch && cd %s && make all"
+        os.system(cmd % (u, u_dir, u_dir, u_dir))
