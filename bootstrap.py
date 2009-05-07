@@ -1,9 +1,10 @@
 import os
 
 """
-Installing PostgreSQL for running the MySQL benchmarks:
+Installing PostgreSQL for running the MySQL benchmarks
+and Django test suite:
 
-    apt-get install postgresql libdbd-pg-perl
+    apt-get install postgresql libdbd-pg-perl python-psycopg2 libreadline5-dev
 
     su postgres -c "createuser -P testuser"
 
