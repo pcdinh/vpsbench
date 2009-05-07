@@ -38,6 +38,8 @@ if __name__ == "__main__":
             "--server=Pg --user=%s --password=%s" % (usr, pwd)
     p_cmd = "cd mysql-5.1.34/sql-bench && %s" % tests
 
+    u_cmd = "cd unixbench-5.1.2 && time ./Run"
+
     start = dt.now()
     for i in range(1, 10000):
         print "Running %s" % i
@@ -45,6 +47,8 @@ if __name__ == "__main__":
         write_log('django_test', run(d_cmd), i)
         time.sleep(60*5)
         write_log('pgsql_mysql_benchmark', run(p_cmd), i)
+        time.sleep(60*5)
+        write_log('unix_benchmark', run(u_cmd), i)
 
         os.system('git pull')
         os.system('git commit -m "Data for run %s (%s)"' % (i, HOST))
