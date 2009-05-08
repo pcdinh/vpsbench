@@ -1,23 +1,21 @@
 diff -urB mysql-5.1.34/sql-bench/test-ATIS mysql-5.1.34-mods/sql-bench/test-ATIS
---- mysql-5.1.34/sql-bench/test-ATIS	2009-05-08 10:31:56.000000000 +0200
-+++ mysql-5.1.34-mods/sql-bench/test-ATIS	2009-05-08 10:26:44.000000000 +0200
-@@ -38,9 +38,8 @@
-   $opt_loop_count/=10;
- }
+--- mysql-5.1.34/sql-bench/test-ATIS	2009-05-08 11:55:05.000000000 +0200
++++ mysql-5.1.34-mods/sql-bench/test-ATIS	2009-05-08 12:03:36.000000000 +0200
+@@ -40,6 +40,8 @@
  
--print "ATIS table test (disabled)\n\n";
-+print "ATIS table test\n\n";
+ print "ATIS table test\n\n";
  
--=for the rest is disabled
++=for this test is disabled
++
  ####
  ####  Connect and start timeing
  ####
-@@ -565,5 +564,3 @@
+@@ -564,3 +566,5 @@
  # Alias used in joins
    @extra_names=("airport as from_airport","airport as to_airport");
  }
--
--=cut
++
++=cut
 diff -urB mysql-5.1.34/sql-bench/test-create mysql-5.1.34-mods/sql-bench/test-create
 --- mysql-5.1.34/sql-bench/test-create	2009-05-06 16:09:43.000000000 +0200
 +++ mysql-5.1.34-mods/sql-bench/test-create	2009-05-08 11:38:47.000000000 +0200
