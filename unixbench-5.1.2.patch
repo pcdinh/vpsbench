@@ -63,3 +63,45 @@ diff -urB unixbench-5.1.2/Run unixbench-5.1.2-mods/Run
      "pipe" => {
          "logmsg" => "Pipe Throughput",
          "cat"    => 'system',
+diff -urB unixbench-5.1.2/Run unixbench-5.1.2-mods/Run
+--- unixbench-5.1.2/Run	2009-05-08 17:46:24.000000000 +0200
++++ unixbench-5.1.2-mods/Run	2009-05-08 17:50:20.000000000 +0200
+@@ -675,20 +675,20 @@
+     open(my $fd, "<", "/proc/cpuinfo") || return undef;
+ 
+     my $cpus = [ ];
+-    my $cpu = 0;
++    my $cpu = -1;
+     while (<$fd>) {
+         chomp;
+         my ( $field, $val ) = split(/[ \t]*:[ \t]*/);
+-        next if (!$field || !$val);
++        next if (!$field);
+         if ($field eq "processor") {
+-            $cpu = $val;
+-        } elsif ($field eq "model name") {
++            $cpu++;
++        } elsif ($val && $field eq "model name") {
+             my $model = $val;
+             $model =~ s/  +/ /g;
+             $cpus->[$cpu]{'model'} = $model;
+-        } elsif ($field eq "bogomips") {
++        } elsif ($val && $field eq "bogomips") {
+             $cpus->[$cpu]{'bogo'} = $val;
+-        } elsif ($field eq "flags") {
++        } elsif ($val && $field eq "flags") {
+             $cpus->[$cpu]{'flags'} = processCpuFlags($val);
+         }
+     }
+@@ -1774,7 +1774,11 @@
+         push(@$copies, 1);
+         if (defined($systemInfo->{'numCpus'}) && $systemInfo->{'numCpus'} > 1) {
+             push(@$copies, $systemInfo->{'numCpus'});
++        } else {
++            # Always run 4 processes for single core machines
++            push(@$copies, 4);
+         }
++
+     }
+ 
+     # Display the program banner.
