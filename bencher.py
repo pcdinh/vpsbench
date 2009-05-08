@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     usr = "testuser"
     pwd = "n0ns3curepWd"
-    tests = "time ./run-all-tests --silent " + \
+    tests = "time ./run-all-tests --silent --force " + \
             "--server=Pg --user=%s --password=%s" % (usr, pwd)
     p_cmd = "cd mysql-5.1.34/sql-bench && %s" % tests
 
