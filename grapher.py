@@ -3,6 +3,7 @@ from __future__ import with_statement
 import re
 
 from glob import glob
+from decimal import Decimal as dec
 
 def parse_benchmark_logs():
     results = {}
@@ -25,7 +26,7 @@ def parse_benchmark_logs():
                 for line in file:
                     match = test_re.match(line)
                     if match:
-                        results[test_name][host].append(match.group(1))
+                        results[test_name][host].append(dec(match.group(1)))
 
     return results
 
