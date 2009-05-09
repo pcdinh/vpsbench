@@ -37,3 +37,8 @@ if __name__ == "__main__":
         cmd = "wget %s && tar xzf %s.tar.gz && " + \
               "patch -p0 -i %s.patch && cd %s && make all"
         os.system(cmd % (u, u_dir, u_dir, u_dir))
+
+    g_dir = "GChartWrapper"
+    if not os.path.isdir(g_dir):
+        u = "http://google-chartwrapper.googlecode.com/svn/trunk/%s" % g_dir
+        os.system("svn co %s" % u)

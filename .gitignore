@@ -4,3 +4,4 @@
 mysql-*/
 unixbench-*/
 django/*
+GChartWrapper/
