@@ -3,8 +3,8 @@ from __future__ import with_statement
 import re
 
 from glob import glob
-from decimal import Decimal as dec
-from pprint import pprint
+from GChartWrapper import Line
+
 
 def parse_benchmark_logs():
     results = {}
@@ -28,7 +28,7 @@ def parse_benchmark_logs():
                 for line in file:
                     match = test_re.search(line)
                     if match:
-                        results[test_name][host].append(dec(match.group(1)))
+                        results[test_name][host].append(float(match.group(1).split('.')[0]))
 
     results['unix_benchmark_single'] = {}
     results['unix_benchmark_multiple'] = {}
@@ -46,5 +46,25 @@ def parse_benchmark_logs():
 
     return results
 
+def graph(data):
+    hosts = (
+        ('opal.redflavor.com', 'Slicehost'),
+        ('garnet.redflavor.com', 'Prgmr'),
+        ('topaz.redflavor.com', 'Linode'),
+    )
+    data = data['django_sqlite3_test']
+
+    dataset = [data[host[0]] for host in hosts]
+
+    g = Line(dataset, encoding='text')
+    g.legend(*[host[1] for host in hosts])
+    g.color("edc240", "afd8f8", "cb4b4b")
+    g.size(550, 150)
+    g.scale(150, 500)
+    #g.show()
+    print g
+
+
+
 if __name__ == "__main__":
-    pprint(parse_benchmark_logs())
+    graph(parse_benchmark_logs())
