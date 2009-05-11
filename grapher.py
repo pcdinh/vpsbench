@@ -1,6 +1,7 @@
 from __future__ import with_statement
 
 import re
+from datetime import datetime, timedelta
 
 from glob import glob
 from GChartWrapper import Line
@@ -8,6 +9,8 @@ from GChartWrapper import Line
 
 def parse_benchmark_logs():
     results = {}
+    date_format = "%Y-%m-%d %H:%M:%S"
+    date_re = re.compile("^Date: (.+)$")
     host_re = re.compile("logs/([a-z.]+)-")
     django_re = re.compile("^Ran \d{3} tests in ([\d.]+)s")
 
@@ -25,10 +28,18 @@ def parse_benchmark_logs():
             host = host_re.search(fname).group(1)
             results[test_name][host] = []
             with open(fname) as file:
+                previous_date = None
                 for line in file:
-                    match = test_re.search(line)
-                    if match:
-                        results[test_name][host].append(float(match.group(1).split('.')[0]))
+                    date_match = date_re.search(line)
+                    if date_match:
+                        date_str = date_match.group(1).split(".")[0]
+                        previous_date = datetime.strptime(date_str,
+                                                          date_format)
+                    else:
+                        match = test_re.search(line)
+                        if match:
+                            vals = (float(match.group(1)), previous_date,)
+                            results[test_name][host].append(vals)
 
     results['unix_benchmark_single'] = {}
     results['unix_benchmark_multiple'] = {}
@@ -53,12 +64,35 @@ def graph(results):
         ('topaz.redflavor.com', 'Linode'),
     )
     for test, data in results.items():
+        datalist = [data[host[0]] for host in hosts]
 
-        dataset = [data[host[0]] for host in hosts]
-        maximum = int(max([max(d) for d in dataset])) + 10
-        minimum = int(min([min(d) for d in dataset])) - 10
+        plots = []
+        dates = []
+        for hostlist in datalist:
+            hostplots = []
+            hostdates = []
+            for hostitem in hostlist:
+                hostplots.append(hostitem[0])
+                hostdates.append(hostitem[1])
+            plots.append(hostplots)
+            dates.append(hostdates)
+        first_day = dates[0][0]
+        last_day = dates[0][-1]
+        delta = last_day - first_day
+        diff = delta.days*60*60*24 + delta.seconds
 
-        g = Line(dataset, encoding='text')
+        days = []
+        days.append(first_day.strftime("%a"))
+        days.append((first_day+timedelta(seconds=int(diff*0.2))).strftime("%a"))
+        days.append((first_day+timedelta(seconds=int(diff*0.4))).strftime("%a"))
+        days.append((first_day+timedelta(seconds=int(diff*0.6))).strftime("%a"))
+        days.append((first_day+timedelta(seconds=int(diff*0.8))).strftime("%a"))
+        days.append(last_day.strftime("%a"))
+
+        maximum = int(max([max(d) for d in plots])) + 10
+        minimum = int(min([min(d) for d in plots])) - 10
+
+        g = Line(plots, encoding='text')
         g.title(test)
         g.legend(*[host[1] for host in hosts])
         g.color("edc240", "afd8f8", "cb4b4b")
@@ -66,9 +100,10 @@ def graph(results):
             g.line(2.5, 1, 0)
         g.size(600, 200)
         g.scale(minimum, maximum)
-        g.axes.type('y')
+        g.axes.type('xy')
         labels = range(minimum, maximum, (maximum-minimum)/5)
-        g.axes.label(0, *labels)
+        g.axes.label(0, *days)
+        g.axes.label(1, *labels)
         #g.show()
         print g
 
