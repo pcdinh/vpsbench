@@ -55,6 +55,8 @@ def graph(results):
     for test, data in results.items():
 
         dataset = [data[host[0]] for host in hosts]
+        maximum = int(max([max(d) for d in dataset])) + 10
+        minimum = int(min([min(d) for d in dataset])) - 10
 
         g = Line(dataset, encoding='text')
         g.title(test)
@@ -63,7 +65,10 @@ def graph(results):
         for i in range(3):
             g.line(2.5, 1, 0)
         g.size(600, 200)
-        g.scale(150, 500)
+        g.scale(minimum, maximum)
+        g.axes.type('y')
+        labels = range(minimum, maximum, (maximum-minimum)/5)
+        g.axes.label(0, *labels)
         #g.show()
         print g
 
