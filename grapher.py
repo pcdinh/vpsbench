@@ -59,7 +59,9 @@ def graph(data):
     g = Line(dataset, encoding='text')
     g.legend(*[host[1] for host in hosts])
     g.color("edc240", "afd8f8", "cb4b4b")
-    g.size(550, 150)
+    for i in range(3):
+        g.line(2.5, 1, 0)
+    g.size(600, 200)
     g.scale(150, 500)
     #g.show()
     print g
