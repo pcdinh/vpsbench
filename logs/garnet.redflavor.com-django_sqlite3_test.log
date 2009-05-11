@@ -292,3 +292,25 @@ OK
 real	5m1.634s
 user	4m32.081s
 sys	0m14.089s
+
+
+Run: 22
+Date: 2009-05-11 10:13:32.846530
+
+
+======================================================================
+FAIL: test_expiration (regressiontests.cache.tests.DBCacheTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/eivindu/vpsbench/django/tests/regressiontests/cache/tests.py", line 224, in test_expiration
+    self.assertEqual(self.cache.get("expire2"), "newvalue")
+AssertionError: None != 'newvalue'
+
+----------------------------------------------------------------------
+Ran 792 tests in 292.640s
+
+FAILED (failures=1)
+
+real	5m3.776s
+user	4m32.169s
+sys	0m13.837s
