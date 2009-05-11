@@ -46,25 +46,26 @@ def parse_benchmark_logs():
 
     return results
 
-def graph(data):
+def graph(results):
     hosts = (
         ('opal.redflavor.com', 'Slicehost'),
         ('garnet.redflavor.com', 'Prgmr'),
         ('topaz.redflavor.com', 'Linode'),
     )
-    data = data['django_sqlite3_test']
+    for test, data in results.items():
 
-    dataset = [data[host[0]] for host in hosts]
+        dataset = [data[host[0]] for host in hosts]
 
-    g = Line(dataset, encoding='text')
-    g.legend(*[host[1] for host in hosts])
-    g.color("edc240", "afd8f8", "cb4b4b")
-    for i in range(3):
-        g.line(2.5, 1, 0)
-    g.size(600, 200)
-    g.scale(150, 500)
-    #g.show()
-    print g
+        g = Line(dataset, encoding='text')
+        g.title(test)
+        g.legend(*[host[1] for host in hosts])
+        g.color("edc240", "afd8f8", "cb4b4b")
+        for i in range(3):
+            g.line(2.5, 1, 0)
+        g.size(600, 200)
+        g.scale(150, 500)
+        #g.show()
+        print g
 
 
 
