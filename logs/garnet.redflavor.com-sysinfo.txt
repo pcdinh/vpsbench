@@ -1,0 +1,14 @@
+# uname -nrmo
+garnet.redflavor.com 2.6.26-1-xen-amd64 x86_64 GNU/Linux
+
+# grep "MemTotal" /proc/meminfo
+MemTotal:      1048792 kB
+
+# grep -m 4 -e "model name" -e "MHz" -e "cache size" -e "bogomips" /proc/cpuinfo
+model name      : Quad-Core AMD Opteron(tm) Processor 2347 HE
+cpu MHz         : 1909.786
+cache size      : 512 KB
+bogomips        : 3818.81
+
+# grep "processor" /proc/cpuinfo | wc -l
+1
