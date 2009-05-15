@@ -93,19 +93,19 @@ def graph(results):
         minimum = int(min([min(d) for d in plots])) - 10
 
         g = Line(plots, encoding='text')
-        g.title(test)
         g.legend(*[host[1] for host in hosts])
+        g.legend_pos('b')
         g.color("edc240", "afd8f8", "cb4b4b")
         for i in range(3):
             g.line(2.5, 1, 0)
-        g.size(600, 200)
+        g.size(500, 200)
         g.scale(minimum, maximum)
         g.axes.type('xy')
         labels = range(minimum, maximum, (maximum-minimum)/5)
         g.axes.label(0, *days)
         g.axes.label(1, *labels)
         #g.show()
-        print g
+        print "%s:\n%s\n" % (test, g)
 
 
 
