@@ -8584,3 +8584,162 @@ sh: runlevel: command not found
 real	52m4.400s
 user	26m10.798s
 sys	51m20.441s
+
+
+Run: 55
+Date: 2009-05-15 15:09:54.033384
+
+make all
+make[1]: Entering directory `/home/eivindu/vpsbench/unixbench-5.1.2'
+Checking distribution of files
+./pgms  exists
+./src  exists
+./testdir  exists
+./tmp  exists
+./results  exists
+make[1]: Leaving directory `/home/eivindu/vpsbench/unixbench-5.1.2'
+
+   #    #  #    #  #  #    #          #####   ######  #    #   ####   #    #
+   #    #  ##   #  #   #  #           #    #  #       ##   #  #    #  #    #
+   #    #  # #  #  #    ##            #####   #####   # #  #  #       ######
+   #    #  #  # #  #    ##            #    #  #       #  # #  #       #    #
+   #    #  #   ##  #   #  #           #    #  #       #   ##  #    #  #    #
+    ####   #    #  #  #    #          #####   ######  #    #   ####   #    #
+
+   Version 5.1.2                      Based on the Byte Magazine Unix Benchmark
+
+   Multi-CPU version                  Version 5 revisions by Ian Smith,
+                                      Sunnyvale, CA, USA
+   December 22, 2007                  johantheghost at yahoo period com
+
+
+1 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10
+
+1 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10
+
+1 x Execl Throughput  1 2 3
+
+1 x File Copy 1024 bufsize 2000 maxblocks  1 2 3
+
+1 x File Copy 256 bufsize 500 maxblocks  1 2 3
+
+1 x File Copy 4096 bufsize 8000 maxblocks  1 2 3
+
+1 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10
+
+1 x Process Creation  1 2 3
+
+1 x System Call Overhead  1 2 3 4 5 6 7 8 9 10
+
+1 x Shell Scripts (1 concurrent)  1 2 3
+
+1 x Shell Scripts (8 concurrent)  1 2 3
+
+4 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10
+
+4 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10
+
+4 x Execl Throughput  1 2 3
+
+4 x File Copy 1024 bufsize 2000 maxblocks  1 2 3
+
+4 x File Copy 256 bufsize 500 maxblocks  1 2 3
+
+4 x File Copy 4096 bufsize 8000 maxblocks  1 2 3
+
+4 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10
+
+4 x Process Creation  1 2 3
+
+4 x System Call Overhead  1 2 3 4 5 6 7 8 9 10
+
+4 x Shell Scripts (1 concurrent)  1 2 3
+
+4 x Shell Scripts (8 concurrent)  1 2 3
+
+========================================================================
+   BYTE UNIX Benchmarks (Version 5.1.2)
+
+   System: opal.redflavor.com: GNU/Linux
+   OS: GNU/Linux -- 2.6.24-23-xen -- #1 SMP Mon Jan 26 03:09:12 UTC 2009
+   Machine: x86_64 (unknown)
+   Language: en_US.utf8 (charmap="UTF-8", collate="UTF-8")
+   CPU 0: Dual-Core AMD Opteron(tm) Processor 2212 (4023.6 bogomips)
+          Hyper-Threading, x86-64, MMX, AMD MMX, Physical Address Ext, AMD virtualization, SYSCALL/SYSRET
+   CPU 1: Dual-Core AMD Opteron(tm) Processor 2212 (4023.6 bogomips)
+          Hyper-Threading, x86-64, MMX, AMD MMX, Physical Address Ext, AMD virtualization, SYSCALL/SYSRET
+   CPU 2: Dual-Core AMD Opteron(tm) Processor 2212 (4023.6 bogomips)
+          Hyper-Threading, x86-64, MMX, AMD MMX, Physical Address Ext, AMD virtualization, SYSCALL/SYSRET
+   CPU 3: Dual-Core AMD Opteron(tm) Processor 2212 (4023.6 bogomips)
+          Hyper-Threading, x86-64, MMX, AMD MMX, Physical Address Ext, AMD virtualization, SYSCALL/SYSRET
+   14:18:03 up 7 days, 11 min,  0 users,  load average: 0.03, 0.41, 0.82; runlevel 
+
+------------------------------------------------------------------------
+Benchmark Run: Fri May 15 2009 14:18:03 - 14:43:49
+4 CPUs in system; running 1 parallel copy of tests
+
+Dhrystone 2 using register variables        9486553.0 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     1881.4 MWIPS (9.4 s, 7 samples)
+Execl Throughput                                742.9 lps   (29.9 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks        138673.2 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks           40161.3 KBps  (30.0 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks        377234.0 KBps  (30.0 s, 2 samples)
+Pipe Throughput                              246946.1 lps   (10.0 s, 7 samples)
+Process Creation                               1858.7 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   1781.6 lpm   (60.0 s, 2 samples)
+Shell Scripts (8 concurrent)                    413.8 lpm   (60.1 s, 2 samples)
+System Call Overhead                         254658.8 lps   (10.0 s, 7 samples)
+
+System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0    9486553.0    812.9
+Double-Precision Whetstone                       55.0       1881.4    342.1
+Execl Throughput                                 43.0        742.9    172.8
+File Copy 1024 bufsize 2000 maxblocks          3960.0     138673.2    350.2
+File Copy 256 bufsize 500 maxblocks            1655.0      40161.3    242.7
+File Copy 4096 bufsize 8000 maxblocks          5800.0     377234.0    650.4
+Pipe Throughput                               12440.0     246946.1    198.5
+Process Creation                                126.0       1858.7    147.5
+Shell Scripts (1 concurrent)                     42.4       1781.6    420.2
+Shell Scripts (8 concurrent)                      6.0        413.8    689.6
+System Call Overhead                          15000.0     254658.8    169.8
+                                                                   ========
+System Benchmarks Index Score                                         321.7
+
+------------------------------------------------------------------------
+Benchmark Run: Fri May 15 2009 14:43:49 - 15:09:54
+4 CPUs in system; running 4 parallel copies of tests
+
+Dhrystone 2 using register variables       34902509.2 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     7470.7 MWIPS (9.4 s, 7 samples)
+Execl Throughput                               1620.4 lps   (29.9 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks         88683.5 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks           24760.0 KBps  (30.0 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks        265394.5 KBps  (30.1 s, 2 samples)
+Pipe Throughput                              916278.1 lps   (10.0 s, 7 samples)
+Process Creation                               2861.8 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   3110.2 lpm   (60.1 s, 2 samples)
+Shell Scripts (8 concurrent)                    463.7 lpm   (60.2 s, 2 samples)
+System Call Overhead                         792192.4 lps   (10.0 s, 7 samples)
+
+System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0   34902509.2   2990.8
+Double-Precision Whetstone                       55.0       7470.7   1358.3
+Execl Throughput                                 43.0       1620.4    376.8
+File Copy 1024 bufsize 2000 maxblocks          3960.0      88683.5    223.9
+File Copy 256 bufsize 500 maxblocks            1655.0      24760.0    149.6
+File Copy 4096 bufsize 8000 maxblocks          5800.0     265394.5    457.6
+Pipe Throughput                               12440.0     916278.1    736.6
+Process Creation                                126.0       2861.8    227.1
+Shell Scripts (1 concurrent)                     42.4       3110.2    733.5
+Shell Scripts (8 concurrent)                      6.0        463.7    772.8
+System Call Overhead                          15000.0     792192.4    528.1
+                                                                   ========
+System Benchmarks Index Score                                         541.6
+
+
+sh: 3dinfo: command not found
+sh: runlevel: command not found
+
+real	51m51.168s
+user	25m44.133s
+sys	49m27.157s
