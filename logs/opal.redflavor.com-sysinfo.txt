@@ -1,0 +1,14 @@
+# uname -nrmo
+opal.redflavor.com 2.6.24-23-xen x86_64 GNU/Linux
+
+# grep "MemTotal" /proc/meminfo
+MemTotal:       262364 kB
+
+# grep -m 4 -e "model name" -e "MHz" -e "cache size" -e "bogomips" /proc/cpuinfo
+model name      : Dual-Core AMD Opteron(tm) Processor 2212
+cpu MHz         : 2010.300
+cache size      : 1024 KB
+bogomips        : 4023.63
+
+# grep "processor" /proc/cpuinfo | wc -l
+4
