@@ -13,7 +13,7 @@ and Django test suite:
         CREATE DATABASE test OWNER testuser ENCODING 'UTF8';
 
     vi /etc/postgresql/8.3/main/pg_hba.conf
-        local    test    testuser    md5
+        local    all    testuser    md5
 
     /etc/init.d/postgresql-8.3 restart
 
