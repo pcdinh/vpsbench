@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 
 def echo_and_run(cmd):
