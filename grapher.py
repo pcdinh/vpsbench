@@ -65,6 +65,7 @@ def graph(results):
         ('topaz.redflavor.com', 'Linode x86_64'),
         ('amethyst.redflavor.com', 'Linode i686'),
     )
+    output = []
     for test, data in results.items():
         datalist = [data[host[0]] for host in hosts]
 
@@ -110,7 +111,9 @@ def graph(results):
         g.axes.label(0, *days)
         g.axes.label(1, *labels)
         #g.show()
-        print "%s:\n%s\n" % (test, g)
+        print test
+        output.append("%s" % g)
+    print ", ".join(output)
 
 
 
