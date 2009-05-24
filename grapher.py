@@ -104,7 +104,7 @@ def graph(results):
         g.color("edc240", "afd8f8", "cb4b4b", "4da74d")
         for i in range(3):
             g.line(2.5, 1, 0)
-        g.size(500, 200)
+        g.size(500, 300)
         g.scale(minimum, maximum)
         g.axes.type('xy')
         labels = range(minimum, maximum, (maximum-minimum)/5)
