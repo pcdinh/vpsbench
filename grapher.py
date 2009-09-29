@@ -64,6 +64,7 @@ def graph(results):
         ('garnet.redflavor.com', 'Prgmr'),
         ('topaz.redflavor.com', 'Linode x86_64'),
         ('amethyst.redflavor.com', 'Linode i686'),
+        ('onyx.redflavor.com', 'Amazon EC2'),
     )
     output = []
     for test, data in results.items():
@@ -75,11 +76,12 @@ def graph(results):
         for hostlist in datalist:
             hostplots = []
             hostdates = []
+            print len(hostlist)
             for hostitem in hostlist:
                 hostplots.append(hostitem[0])
                 hostdates.append(hostitem[1])
             if len(hostplots) < max_points:
-                hostplots.extend([0 for i in xrange(max_points-len(hostplots))])
+                hostplots.extend([hostlist[-1][0] for i in xrange(max_points-len(hostplots))])
             plots.append(hostplots)
             dates.append(hostdates)
         first_day = dates[0][0]
