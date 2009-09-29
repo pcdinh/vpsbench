@@ -64,10 +64,14 @@ def graph(results):
         ('garnet.redflavor.com', 'Prgmr'),
         ('topaz.redflavor.com', 'Linode x86_64'),
         ('amethyst.redflavor.com', 'Linode i686'),
-        ('onyx.redflavor.com', 'Amazon EC2'),
+        ('onyx.redflavor.com', 'Amazon'),
+        ('beryl.redflavor.com', 'Rackspace'),
     )
     output = []
-    for test, data in results.items():
+    sorted_keys = results.keys()
+    sorted_keys.sort()
+    for test in sorted_keys:
+        data = results[test]
         datalist = [data[host[0]] for host in hosts]
 
         plots = []
@@ -76,7 +80,6 @@ def graph(results):
         for hostlist in datalist:
             hostplots = []
             hostdates = []
-            print len(hostlist)
             for hostitem in hostlist:
                 hostplots.append(hostitem[0])
                 hostdates.append(hostitem[1])
@@ -97,17 +100,24 @@ def graph(results):
         days.append((first_day+timedelta(seconds=int(diff*0.8))).strftime("%a"))
         days.append(last_day.strftime("%a"))
 
-        maximum = int(max([max(d) for d in plots])) + 10
-        minimum = int(min([min(d) for d in plots])) - 10
+        maximum = max([max(d) for d in plots])
+        minimum = min([min(d) for d in plots])
 
-        g = Line(plots, encoding='text')
+        def scale(value, scale=4095):
+            return (value - minimum) * scale / abs(maximum - minimum)
+
+        scaled_plots = []
+        for hostplots in plots:
+            scaled_plots.append([scale(v) for v in hostplots])
+
+        g = Line(scaled_plots, encoding='extended')
         g.legend(*[host[1] for host in hosts])
         g.legend_pos('b')
-        g.color("edc240", "afd8f8", "cb4b4b", "4da74d", "a74d9d")
+        g.color("edc240", "afd8f8", "cb4b4b", "4da74d", "9440ed", "4066ed", )
         for i in range(3):
             g.line(2.5, 1, 0)
         g.size(500, 300)
-        g.scale(minimum, maximum)
+        #g.scale(minimum, maximum)
         g.axes.type('xy')
         labels = range(minimum, maximum, (maximum-minimum)/5)
         g.axes.label(0, *days)
