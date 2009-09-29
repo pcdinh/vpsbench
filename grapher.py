@@ -103,7 +103,7 @@ def graph(results):
         g = Line(plots, encoding='text')
         g.legend(*[host[1] for host in hosts])
         g.legend_pos('b')
-        g.color("edc240", "afd8f8", "cb4b4b", "4da74d")
+        g.color("edc240", "afd8f8", "cb4b4b", "4da74d", "a74d9d")
         for i in range(3):
             g.line(2.5, 1, 0)
         g.size(500, 300)
