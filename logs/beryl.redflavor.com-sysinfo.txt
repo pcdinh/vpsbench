@@ -1,0 +1,14 @@
+# uname -nrmo
+beryl.redflavor.com 2.6.24-24-xen x86_64 GNU/Linux
+
+# grep "MemTotal" /proc/meminfo
+MemTotal:       524508 kB
+
+# grep -m 4 -e "model name" -e "MHz" -e "cache size" -e "bogomips" /proc/cpuinfo
+model name      : Quad-Core AMD Opteron(tm) Processor 2347 HE
+cpu MHz         : 1895.250
+cache size      : 512 KB
+bogomips        : 3806.49
+
+# grep "processor" /proc/cpuinfo | wc -l
+4
