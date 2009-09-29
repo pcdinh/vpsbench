@@ -1,0 +1,14 @@
+# uname -nrmo
+onyx.redflavor.com 2.6.21.7-2.fc8xen i686 GNU/Linux
+
+# grep "MemTotal" /proc/meminfo
+MemTotal:      1747764 kB
+
+# grep -m 4 -e "model name" -e "MHz" -e "cache size" -e "bogomips" /proc/cpuinfo
+model name	: Intel(R) Xeon(R) CPU           E5430  @ 2.66GHz
+cpu MHz		: 2659.998
+cache size	: 6144 KB
+bogomips	: 6651.45
+
+# grep "processor" /proc/cpuinfo | wc -l
+1
