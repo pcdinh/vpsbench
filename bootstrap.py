@@ -29,9 +29,9 @@ if __name__ == "__main__":
 
         m_dir = "mysql-5.1.34"
         if not os.path.isdir(m_dir):
-            u = "http://mysql.he.net/Downloads/MySQL-5.1/mysql-5.1.34.tar.gz"
+            u = "http://downloads.mysql.com/archives/mysql-5.1/mysql-5.1.34.tar.gz"
             cmd = "wget %s && tar xzf %s.tar.gz && cd %s && ./configure " + \
-                  "&& make && patch -p0 -i %s.patch"
+                  "&& make && cd .. && patch -p0 -i %s.patch"
             os.system(cmd % (u, m_dir, m_dir, m_dir))
 
         u_dir = "unixbench-5.1.2"
