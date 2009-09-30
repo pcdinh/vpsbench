@@ -82,3 +82,25 @@ OK
 real	9m56.986s
 user	4m3.943s
 sys	0m18.289s
+
+
+Run: 7
+Date: 2009-09-30 07:56:58.029012
+
+
+======================================================================
+FAIL: Moderation queue should display non-public, non-removed comments.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/eivindu/vpsbench/django/tests/regressiontests/comment_tests/tests/moderation_view_tests.py", line 184, in testModerationQueueContents
+    self.assertEqual(list(response.context[0]["comments"]), [c1, c2])
+AssertionError: [<Comment: Joe Somebody: First here, too!...>, <Comment: Joe Somebody: First!...>] != [<Comment: Joe Somebody: First!...>, <Comment: Joe Somebody: First here, too!...>]
+
+----------------------------------------------------------------------
+Ran 790 tests in 565.020s
+
+FAILED (failures=1)
+
+real	9m55.002s
+user	4m3.487s
+sys	0m18.273s
