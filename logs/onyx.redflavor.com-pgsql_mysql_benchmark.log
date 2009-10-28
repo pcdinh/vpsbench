@@ -859,3 +859,126 @@ TOTALS                              1567.00   85.00   12.12   97.12 1203906
 real	27m42.030s
 user	1m35.522s
 sys	0m12.297s
+
+
+Run: 8
+Date: 2009-10-28 15:35:18.839476
+
+Benchmark DBD suite: 2.15
+Date of test:        2009-10-28 15:07:45
+Running tests on:    Linux 2.6.21.7-2.fc8xen-ec2-v1.0 i686
+Arguments:           --silent
+Comments:            
+Limits from:         
+Server version:      PostgreSQL version ???
+Optimization:        None
+Hardware:            
+
+alter-table: Total time:  2 wallclock secs ( 0.03 usr  0.03 sys +  0.00 cusr  0.00 csys =  0.06 CPU)
+ATIS: Failed (output/ATIS-Pg-Linux_2.6.21.7_2.fc8xen_ec2_v1.0_i686)
+big-tables: Total time: 80 wallclock secs ( 4.81 usr  0.06 sys +  0.00 cusr  0.00 csys =  4.87 CPU)
+connect: Total time: 400 wallclock secs (17.94 usr  7.16 sys +  0.00 cusr  0.00 csys = 25.10 CPU)
+create: Total time: 101 wallclock secs ( 0.46 usr  0.14 sys +  0.00 cusr  0.00 csys =  0.60 CPU)
+insert: Total time: 339 wallclock secs (39.51 usr  2.35 sys +  0.00 cusr  0.00 csys = 41.86 CPU)
+select: Total time: 669 wallclock secs (27.87 usr  1.62 sys +  0.00 cusr  0.00 csys = 29.49 CPU)
+transactions: Total time: 32 wallclock secs ( 1.49 usr  0.71 sys +  0.00 cusr  0.00 csys =  2.20 CPU)
+wisconsin: Total time: 28 wallclock secs ( 3.93 usr  0.20 sys +  0.00 cusr  0.00 csys =  4.13 CPU)
+
+Of 9 tests, 1 tests didn't work
+
+Totals per operation:
+Operation             seconds     usr     sys     cpu   tests
+alter_table_add                        2.00    0.02    0.01    0.03     992 
+connect                               72.00    2.10    0.32    2.42   10000 
+connect+select_1_row                  97.00    2.09    0.42    2.51   10000 
+connect+select_simple                 78.00    1.98    0.49    2.47   10000 
+count                                  2.00    0.00    0.00    0.00     100 
+count_distinct                        12.00    0.07    0.02    0.09    1000 
+count_distinct_2                      27.00    0.11    0.00    0.11    1000 
+count_distinct_big                    43.00    5.74    0.04    5.78     120 
+count_distinct_group                  32.00    0.80    0.01    0.81    1000 
+count_distinct_group_on_key           32.00    0.14    0.00    0.14    1000 
+count_distinct_group_on_key_parts     31.00    0.63    0.00    0.63    1000 
+count_distinct_key_prefix             26.00    0.10    0.01    0.11    1000 
+count_group_on_key_parts              13.00    0.63    0.02    0.65    1000 
+count_on_key                         213.00    3.91    0.58    4.49   50100 
+create+drop                           10.00    0.09    0.02    0.11    1000 
+create_MANY_tables                     4.00    0.03    0.01    0.04    1000 
+create_index                           0.00    0.00    0.00    0.00       8 
+create_key+drop                       82.00    0.31    0.10    0.41    1000 
+create_table                           0.00    0.00    0.00    0.00       3 
+delete_all_many_keys                   1.00    0.00    0.00    0.00       1 
+delete_autocommit                      4.00    0.06    0.06    0.12   10000 
+delete_big                             0.00    0.00    0.00    0.00       1 
+delete_big_many_keys                   1.00    0.00    0.00    0.00     128 
+delete_commit                          3.00    0.13    0.08    0.21   10000 
+delete_key                             1.00    0.02    0.00    0.02    1000 
+delete_range                           0.00    0.01    0.00    0.01      12 
+delete_rollback                        3.00    0.15    0.09    0.24     100 
+drop_index                             0.00    0.00    0.00    0.00       8 
+drop_table_when_MANY_tables            4.00    0.02    0.01    0.03    1000 
+insert                                33.00    0.69    0.23    0.92   71000 
+insert_autocommit                      5.00    0.12    0.03    0.15   10000 
+insert_commit                          2.00    0.32    0.09    0.41   10000 
+insert_duplicates                      4.00    0.33    0.10    0.43   10000 
+insert_key                            10.00    0.17    0.04    0.21   10000 
+insert_many_fields                    30.00    0.10    0.02    0.12    2000 
+insert_rollback                        3.00    0.22    0.07    0.29     100 
+insert_select_1_key                    0.00    0.00    0.00    0.00       1 
+insert_select_2_keys                   1.00    0.00    0.00    0.00       1 
+min_max                                1.00    0.00    0.00    0.00      60 
+min_max_on_key                        45.00    6.03    0.80    6.83   85000 
+once_prepared_select                   3.00    0.42    0.12    0.54   10000 
+order_by_big                           5.00    1.33    0.02    1.35      10 
+order_by_big_key                       7.00    1.73    0.01    1.74      10 
+order_by_big_key2                      5.00    1.34    0.01    1.35      10 
+order_by_big_key_desc                  6.00    1.75    0.01    1.76      10 
+order_by_big_key_diff                  5.00    1.31    0.00    1.31      10 
+order_by_big_key_prefix                5.00    1.32    0.00    1.32      10 
+order_by_key2_diff                     4.00    1.12    0.02    1.14     500 
+order_by_key_prefix                    2.00    0.59    0.01    0.60     500 
+order_by_range                         2.00    0.61    0.00    0.61     500 
+outer_join                             3.00    0.00    0.00    0.00      10 
+outer_join_found                       1.00    0.00    0.00    0.00      10 
+outer_join_not_found                   3.00    0.00    0.01    0.01     500 
+outer_join_on_key                      3.00    0.00    0.00    0.00      10 
+prepared_select                        4.00    0.69    0.12    0.81   10000 
+select_1_row                          25.00    1.77    1.03    2.80  100000 
+select_1_row_cache                    24.00    1.81    0.79    2.60  100000 
+select_2_rows                         25.00    1.74    0.81    2.55  100000 
+select_big                             4.00    1.45    0.00    1.45      80 
+select_big_str                        15.00    1.40    0.58    1.98   10000 
+select_cache                          84.00    0.79    0.08    0.87   10000 
+select_cache2                         85.00    0.78    0.08    0.86   10000 
+select_column+column                  32.00    1.72    0.90    2.62  100000 
+select_diff_key                        0.00    0.05    0.00    0.05     500 
+select_group                           7.00    0.01    0.00    0.01     111 
+select_group_when_MANY_tables          1.00    0.01    0.00    0.01    1000 
+select_key                            10.00    1.37    0.21    1.58   20000 
+select_key2                            9.00    1.52    0.21    1.73   20000 
+select_key2_return_key                 9.00    1.41    0.17    1.58   20000 
+select_key2_return_prim                9.00    1.32    0.19    1.51   20000 
+select_key_prefix                      9.00    1.56    0.20    1.76   20000 
+select_key_return_key                 10.00    1.53    0.15    1.68   20000 
+select_many_fields                    49.00    4.71    0.04    4.75    2000 
+select_range                          47.00    9.11    0.07    9.18     410 
+select_range_key2                     17.00    2.49    0.16    2.65   25010 
+select_range_prefix                   16.00    2.21    0.12    2.33   25010 
+select_simple                         16.00    1.68    0.87    2.55  100000 
+select_simple_cache                   16.00    1.65    0.95    2.60  100000 
+update_autocommit                      6.00    0.05    0.07    0.12   10000 
+update_big                            10.00    0.00    0.00    0.00      10 
+update_commit                          3.00    0.23    0.10    0.33   10000 
+update_of_key                          3.00    0.04    0.02    0.06    5000 
+update_of_key_big                      3.00    0.01    0.00    0.01     480 
+update_of_primary_key_many_keys        4.00    0.00    0.00    0.00     256 
+update_rollback                        3.00    0.20    0.12    0.32     100 
+update_with_key                       18.00    0.26    0.11    0.37   30000 
+update_with_key_prefix                 5.00    0.14    0.05    0.19   10000 
+wisc_benchmark                        12.00    3.60    0.10    3.70     114 
+TOTALS                              1571.00   85.95   12.18   98.13 1203906 
+
+
+real	27m33.888s
+user	1m36.778s
+sys	0m12.405s
