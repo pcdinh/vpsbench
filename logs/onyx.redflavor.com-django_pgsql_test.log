@@ -686,3 +686,25 @@ FAILED (failures=1)
 real	11m29.496s
 user	2m16.909s
 sys	0m12.361s
+
+
+Run: 45
+Date: 2009-11-02 06:06:06.196196
+
+
+======================================================================
+FAIL: Regression for #3031: Archives around Feburary include only one month
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/eivindu/vpsbench/django/tests/regressiontests/views/tests/generic/date_based.py", line 112, in test_archive_month_includes_only_month
+    self.assertEqual(response.context['previous_month'], prev_month)
+AssertionError: datetime.date(2009, 10, 1) != datetime.date(2008, 12, 1)
+
+----------------------------------------------------------------------
+Ran 790 tests in 665.535s
+
+FAILED (failures=1)
+
+real	11m34.889s
+user	2m17.213s
+sys	0m12.713s
