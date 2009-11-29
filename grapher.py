@@ -4,9 +4,18 @@ from __future__ import with_statement
 import re
 from datetime import datetime, timedelta
 
+import numpy
 from glob import glob
 from GChartWrapper import Line
 
+HOSTS = (
+    ('opal.redflavor.com', 'Slicehost'),
+    ('garnet.redflavor.com', 'Prgmr'),
+    ('topaz.redflavor.com', 'Linode x86_64'),
+    ('amethyst.redflavor.com', 'Linode i686'),
+    ('onyx.redflavor.com', 'Amazon'),
+    ('beryl.redflavor.com', 'Rackspace'),
+)
 
 def parse_benchmark_logs():
     results = {}
@@ -59,20 +68,12 @@ def parse_benchmark_logs():
     return results
 
 def graph(results):
-    hosts = (
-        ('opal.redflavor.com', 'Slicehost'),
-        ('garnet.redflavor.com', 'Prgmr'),
-        ('topaz.redflavor.com', 'Linode x86_64'),
-        ('amethyst.redflavor.com', 'Linode i686'),
-        ('onyx.redflavor.com', 'Amazon'),
-        ('beryl.redflavor.com', 'Rackspace'),
-    )
     output = []
     sorted_keys = results.keys()
     sorted_keys.sort()
     for test in sorted_keys:
         data = results[test]
-        datalist = [data[host[0]] for host in hosts]
+        datalist = [data[host[0]] for host in HOSTS]
 
         plots = []
         dates = []
@@ -111,9 +112,9 @@ def graph(results):
             scaled_plots.append([scale(v) for v in hostplots])
 
         g = Line(scaled_plots, encoding='extended')
-        g.legend(*[host[1] for host in hosts])
+        g.legend(*[host[1] for host in HOSTS])
         g.legend_pos('b')
-        g.color("edc240", "afd8f8", "cb4b4b", "4da74d", "9440ed", "4066ed", )
+        g.color("edc240", "afd8f8", "cb4b4b", "4da74d", "f8afe8", "4066ed", )
         for i in range(3):
             g.line(2.5, 1, 0)
         g.size(500, 300)
@@ -124,10 +125,81 @@ def graph(results):
         g.axes.label(1, *labels)
         #g.show()
         print test
+        print g
         output.append("%s" % g)
-    print ", ".join(output)
+    #print ", ".join(output)
+
+def style(index, value, test, dataset):
+    values = []
+    for host in HOSTS:
+        hostkey, hostname = host
+        values.append(dataset[hostkey][test][index])
+    maxmatch = max(values) == value
+    minmatch = min(values) == value
+    if index == 0:
+        if "unix_" in test:
+            if maxmatch:
+                return "background: #e6efc2;"
+            if minmatch:
+                return "background: #fbe3e4;"
+        else:
+            if maxmatch:
+                return "background: #fbe3e4;"
+            if minmatch:
+                return "background: #e6efc2;"
+    if index == 1:
+        if maxmatch:
+            return "background: #fbe3e4;"
+        if minmatch:
+            return "background: #e6efc2;"
+    return ""
+
+
+def table(results):
+    sorted_tests = [
+        'unix_benchmark_single',
+        'unix_benchmark_multiple',
+        'pgsql_mysql_benchmark',
+        'django_pgsql_test',
+        'django_sqlite3_test',
+    ]
+    output = []
+    output.append("  <tr>")
+    output.append("    <th>&nbsp;</th>")
+    for i, test in enumerate(sorted_tests):
+        output.append("    <th title=\"%s\">%s <span style=\"text-decoration:overline;\">x</span></th>" % (test, i+1))
+        output.append("    <th title=\"%s\">%s &sigma;</th>" % (test, i+1))
+    output.append("  </tr>")
+
+    calculations = {}
+
+    for host in HOSTS:
+        hostkey, hostname = host
+        calculations[hostkey] = {}
+        for test in sorted_tests:
+            scores_and_times = results[test][hostkey]
+            scores = [s[0] for s in scores_and_times]
+            avg = sum(scores, 0.0) / len(scores)
+            std = numpy.std(scores)
+            calculations[hostkey][test] = (avg, std)
+
+    for host in HOSTS:
+        hostkey, hostname = host
+        output.append("  <tr>")
+        output.append("    <td>%s</td>" % hostname)
+        for test in sorted_tests:
+            avg, std = calculations[hostkey][test]
+            avg_style = style(0, avg, test, calculations)
+            std_style = style(1, std, test, calculations)
+            output.append("    <td style=\"text-align: right; %s\">%s</td>" % (avg_style, int(round(avg))))
+            output.append("    <td style=\"text-align: right; %s\">%s</td>" % (std_style, round(std, 2)))
+        output.append("  </tr>")
+
+    print "\n".join(output)
 
 
 
 if __name__ == "__main__":
-    graph(parse_benchmark_logs())
+    results = parse_benchmark_logs()
+    #graph(results)
+    table(results)

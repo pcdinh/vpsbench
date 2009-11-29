@@ -6,7 +6,7 @@ import sys
 Installing PostgreSQL for running the MySQL benchmarks
 and Django test suite:
 
-    apt-get install postgresql libdbd-pg-perl python-psycopg2 libreadline5-dev
+    apt-get install postgresql libdbd-pg-perl python-psycopg2 libreadline5-dev python-scipy
 
     su postgres -c "createuser -P testuser"
 
